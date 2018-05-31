@@ -17,7 +17,7 @@ set showmatch
 set background=dark
 
 "enable all Python syntax highlighting features
-let python_highlight_all = 1
+"let python_highlight_all = 1
 
 "color scheme
 colorscheme PaperColor
@@ -74,8 +74,6 @@ nnoremap <C-n> :call NumberToggle()<cr>
 "Key remapping
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap K i<CR><Esc>
-
 "exit terminal mode neovim
 tnoremap <Esc> <C-\><C-n>
 
