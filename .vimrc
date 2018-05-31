@@ -5,7 +5,36 @@
 "always display the status line
 set laststatus=2
 
+"
+set clipboard=unnamed
 
+"keep indention of clipboard paste
+set paste
+
+" show the matching part of the pair for [] {} and ()
+set showmatch
+
+set syntax
+
+" Set the background theme to dark
+set background=dark
+
+"enable all Python syntax highlighting features
+let python_highlight_all = 1
+
+" color scheme
+colorscheme PaperColor
+
+" true color support
+set termguicolors
+
+"languages
+""
+""
+"autocmd FileType java set omnifunc=javacomplete#Complete
+
+"set netrw line numbers etc
+let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro' 
 "Gvim Window options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -15,7 +44,6 @@ if has('gui_running')
 	set guioptions-=T  "remove toolbar
 	set guioptions-=r  "remove right-hand scroll bar
 	set guioptions-=L  "remove left-hand scroll bar
-	set guifont=Consolas:h10
 endif
 
 "Navagating splits
@@ -79,6 +107,8 @@ nnoremap <C-n> :call NumberToggle()<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap K i<CR><Esc>
 
+"exit terminal mode neovim
+tnoremap <Esc> <C-\><C-n>
 "Syntax
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -88,6 +118,7 @@ syntax on
 "Indenting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "default backspace behavior
 set backspace=indent,eol,start
 
@@ -102,7 +133,6 @@ set shiftwidth=4
 
 "on pressing tab, insert 4 spaces
 set expandtab
-
 
 "Folding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -127,13 +157,14 @@ hi Search guibg=LightBlue
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "no gui 
-colors evening
 
 if has('gui_running')
     "make a repo for the colors or pull from existing repo?	
-    colors gruvbox
+    let base16colorspace=256 
+    colors seagrey-light
     "change to dark gruvbox theme	
-    set background=dark
+    "airline theme
+    let g:airline_theme='minimalist'"
     
     "expand gvim window
 	set lines=999 columns =999
@@ -196,6 +227,8 @@ endif
 if has("gui_running")
     "start pathogen to load plugins	
     execute pathogen#infect()
+
+	execute pathogen#helptags()
 
     "auto starts nerdtree when vim is opened with a file	
     autocmd VimEnter * NERDTree
@@ -347,9 +380,37 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("gui_running")
     if has("mac")
-    
+
+        "f2 pastes from clipboard on mac
+        map <F2> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+        "f3 copies to clipboard on mac 
+        nmap <F3> :.w !pbcopy<CR><CR>
+        vmap <F3> :w !pbcopy<CR><CR>:rqqq
+
+		let g:pymode_python = 'python3'
+	
+		let g:pymode_folding = 0
+
+		let g:pymode_lint_on_fly = 1
+
+		let g:pymode_lint_checkers = ['pep8', 'mccabe', 'pylint']
+
+        let g:pymode_rope_completion = 1
+
+        let g:pymode_rope_complete_on_dot = 1
+
+        let g:pymode_rope_autoimport = 1
+
+        let g:pymode_rope_autoimport_modules = ['os', 'shutil', 'datetime']
+
+        let g:pymode_rope_autoimport_import_after_complete = 1
+        
+        "Pylint configuration file
+        let g:pymode_lint_config = '$HOME/pylint.rc'
+
     endif
 endif
 
-
-
+"Python lint
+set makeprg=pylint\ --reports=n\ --output-format=parseable\ %:p
+set errorformat=%f:%l:\ %m
