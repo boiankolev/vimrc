@@ -25,6 +25,9 @@ colorscheme PaperColor
 "true color support
 set termguicolors
 
+"showing all white spaces, tabs, etc
+set list
+
 "set netrw line numbers etc
 let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro' 
 
