@@ -20,6 +20,7 @@ set background=dark
 "let python_highlight_all = 1
 
 "color scheme
+set t_Co=256
 colorscheme PaperColor
 
 "true color support
@@ -36,10 +37,10 @@ let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if has('gui_running')
-	set guioptions-=m  "remove menu bar
-	set guioptions-=T  "remove toolbar
-	set guioptions-=r  "remove right-hand scroll bar
-	set guioptions-=L  "remove left-hand scroll bar
+    set guioptions-=m  "remove menu bar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand scroll bar
+    set guioptions-=L  "remove left-hand scroll bar
 endif
 
 "Navagating splits
@@ -130,11 +131,11 @@ hi Search guibg=LightBlue
 
 if has('gui_running')
     "expand gvim window
-	set lines=999 columns =999
+    set lines=999 columns =999
 
-	"highlight current line
-	set cul
-	
+    "highlight current line
+    set cul
+
     "adjust color
-	hi CursorLine term=none cterm=none ctermbg=3      
+    hi CursorLine term=none cterm=none ctermbg=3
 endif
