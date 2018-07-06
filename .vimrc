@@ -55,25 +55,19 @@ nnoremap <C-Right> <C-W><C-L>
 "moves cursor left a split
 nnoremap <C-Left> <C-W><C-H>
 
+"Buffers
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap ,n :bnext<cr>
+nnoremap ,p :bprev<cr>
+
+nnoremap ,b :ls<CR>:buffer<Space>
+
 "LineNumbers
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set line numbers
 set number
-
-
-"set relativenumber
-let g:rel_num_toggle = 1
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-    set relativenumber!
-  else
-    set relativenumber
-  endif
-endfunc
-
-nnoremap <C-n> :call NumberToggle()<cr>
 
 "Key remapping
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
