@@ -35,6 +35,7 @@ let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
 "change tab characters to pipe
 set listchars=tab:\│\ ,trail:-,extends:>,precedes:<,nbsp:+
 
+"open help with argument vertically positioned on the right
 command! -nargs=1 H :vert bo help <args>
 
 "Gvim Window options
