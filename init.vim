@@ -20,7 +20,7 @@ set paste
 set showmatch
 
 "set the background theme to dark
-set background=light
+set background=dark
 
 "enable all Python syntax highlighting features
 let python_highlight_all = 1
