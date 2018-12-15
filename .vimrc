@@ -172,6 +172,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'vim-airline/vim-airline-themes'
     Plug 'vim-airline/vim-airline'
 
+    Plug 'vim-syntastic/syntastic'
+
     Plug 'airblade/vim-gitgutter'
 
     Plug 'https://gitlab.com/Lenovsky/nuake.git'
@@ -186,15 +188,29 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'fatih/vim-go'
 
+    Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
+" Nuake
 nnoremap <F4> :Nuake<CR>
 inoremap <F4> <C-\><C-n>:Nuake<CR>
 tnoremap <F4> <C-\><C-n>:Nuake<CR>
-
 let g:nuake_size = 0.75
 
+" Airline
 let g:airline_theme='base16'
 let g:airline#extensions#tabline#enabled =1
 
+" Deoplete
 let g:deoplete#enable_at_startup = 1
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
