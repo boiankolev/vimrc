@@ -158,43 +158,35 @@ endif
 "Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if &compatible
-    set nocompatible
-endif
 
-" Add the dein installation directory into runtimepath
-set rtp+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
-if dein#load_state('~/.cache/dein')
-    call dein#begin('~/.cache/dein')
+    Plug '~/.cache/dein/repos/github.com/Shougo/dein.vim'
+    Plug 'Shougo/deoplete.nvim'
 
-    call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-    call dein#add('Shougo/deoplete.nvim')
+    Plug 'zchee/deoplete-jedi'
 
-    call dein#add('zchee/deoplete-jedi')
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'vim-airline/vim-airline'
 
-    call dein#add('vim-airline/vim-airline-themes')
-    call dein#add('vim-airline/vim-airline')
+    Plug 'airblade/vim-gitgutter'
 
-    call dein#add('airblade/vim-gitgutter')
+    Plug 'https://gitlab.com/Lenovsky/nuake.git'
 
-    call dein#add('https://gitlab.com/Lenovsky/nuake.git')
+    Plug 'janko-m/vim-test'
 
-    call dein#add('janko-m/vim-test')
+    Plug 'vim-python/python-syntax'
 
-    call dein#add('vim-python/python-syntax')
+    Plug 'tpope/vim-fugitive'
 
-    call dein#add('tpope/vim-fugitive')
-    call dein#add('tpope/vim-surround')
+    Plug 'tpope/vim-surround'
 
-    if !has('nvim')
-        call dein#add('roxma/nvim-yarp')
-        call dein#add('roxma/vim-hug-neovim-rpc')
-    endif
+    Plug 'fatih/vim-go'
 
-    call dein#end()
-    call dein#save_state()
-endif
+call plug#end()
 
 nnoremap <F4> :Nuake<CR>
 inoremap <F4> <C-\><C-n>:Nuake<CR>
