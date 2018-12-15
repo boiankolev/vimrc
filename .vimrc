@@ -4,6 +4,12 @@
 "always display the status line
 set laststatus=2
 
+" clear all autocommands! (this comment must be on its own line)
+autocmd!
+
+" Show (partial) command in status line.
+set showcmd
+
 "cross platform yank, paste
 set clipboard^=unnamed,unnamedplus
 
@@ -14,10 +20,10 @@ set paste
 set showmatch
 
 "set the background theme to dark
-set background=dark
+set background=light
 
 "enable all Python syntax highlighting features
-"let python_highlight_all = 1
+let python_highlight_all = 1
 
 "color scheme
 set t_Co=256
@@ -38,6 +44,11 @@ set listchars=tab:\│\ ,trail:-,extends:>,precedes:<,nbsp:+
 "open help with argument vertically positioned on the right
 command! -nargs=1 H :vert bo help <args>
 
+"open tig in new term vertical split
+command! T :vsplit term://tig
+
+" remove holding shift to enter command mode
+nmap ; :
 "Gvim Window options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -124,7 +135,8 @@ hi Search guibg=LightBlue
 "Press Space to turn off highlighting and clear any message already displayed.
 :nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
-"FZF searching support 
+"FZF searching support
+set rtp+=/usr/local/opt/fzf
 nnoremap ,` :FZF<CR>
 
 "Environment
@@ -151,13 +163,15 @@ if &compatible
 endif
 
 " Add the dein installation directory into runtimepath
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+set rtp+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 if dein#load_state('~/.cache/dein')
     call dein#begin('~/.cache/dein')
 
     call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
     call dein#add('Shougo/deoplete.nvim')
+
+    call dein#add('zchee/deoplete-jedi')
 
     call dein#add('vim-airline/vim-airline-themes')
     call dein#add('vim-airline/vim-airline')
@@ -168,20 +182,27 @@ if dein#load_state('~/.cache/dein')
 
     call dein#add('janko-m/vim-test')
 
+    call dein#add('vim-python/python-syntax')
+
+    call dein#add('tpope/vim-fugitive')
+    call dein#add('tpope/vim-surround')
+
     if !has('nvim')
         call dein#add('roxma/nvim-yarp')
         call dein#add('roxma/vim-hug-neovim-rpc')
     endif
 
-    let g:deoplete#enable_at_startup = 1
-
-    let g:airline_theme='base16'
-    let g:airline#extensions#tabline#enabled =1
-
-    nnoremap <F4> :Nuake<CR>
-    inoremap <F4> <C-\><C-n>:Nuake<CR>
-    tnoremap <F4> <C-\><C-n>:Nuake<CR>
-
     call dein#end()
     call dein#save_state()
 endif
+
+nnoremap <F4> :Nuake<CR>
+inoremap <F4> <C-\><C-n>:Nuake<CR>
+tnoremap <F4> <C-\><C-n>:Nuake<CR>
+
+let g:nuake_size = 0.75
+
+let g:airline_theme='base16'
+let g:airline#extensions#tabline#enabled =1
+
+let g:deoplete#enable_at_startup = 1
