@@ -20,7 +20,7 @@ set paste
 set showmatch
 
 "set the background theme to dark
-set background=dark
+set background=light
 
 "enable all Python syntax highlighting features
 let python_highlight_all = 1
@@ -49,6 +49,14 @@ command! T :vsplit term://tig
 
 " remove holding shift to enter command mode
 nmap ; :
+
+" disable swap files, I like to live life on the edge!
+set nobackup
+set nowritebackup
+set noswapfile
+
+" splits open to righ
+set splitright
 "Gvim Window options
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -162,19 +170,22 @@ endif
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
+" - so % and run `:PlugInstall` to install
 call plug#begin('~/.vim/plugged')
 
-    Plug '~/.cache/dein/repos/github.com/Shougo/dein.vim'
     Plug 'Shougo/deoplete.nvim'
 
     Plug 'zchee/deoplete-jedi'
 
     Plug 'vim-airline/vim-airline-themes'
+
     Plug 'vim-airline/vim-airline'
 
     Plug 'vim-syntastic/syntastic'
 
     Plug 'airblade/vim-gitgutter'
+
+    Plug 'jlanzarotta/bufexplorer'
 
     Plug 'https://gitlab.com/Lenovsky/nuake.git'
 
@@ -182,13 +193,24 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'vim-python/python-syntax'
 
+    " Git support
     Plug 'tpope/vim-fugitive'
 
     Plug 'tpope/vim-surround'
 
+    Plug 'tpope/vim-unimpaired'
+
     Plug 'fatih/vim-go'
 
     Plug 'rust-lang/rust.vim'
+
+    Plug 'jceb/vim-orgmode'
+
+    Plug 'xolox/vim-notes'
+
+    Plug 'xolox/vim-misc'
+
+    Plug 'mileszs/ack.vim'
 
 call plug#end()
 
@@ -196,7 +218,7 @@ call plug#end()
 nnoremap <F4> :Nuake<CR>
 inoremap <F4> <C-\><C-n>:Nuake<CR>
 tnoremap <F4> <C-\><C-n>:Nuake<CR>
-let g:nuake_size = 0.75
+let g:nuake_size = 0.95
 
 " Airline
 let g:airline_theme='base16'
@@ -214,3 +236,13 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_flake8_args='--ignore=E501,E225'
+let g:syntastic_python_pylint_post_args="--max-line-length=120"
+
+let g:bufExplorerSplitRight=1
+nnoremap <F3> :SyntasticReset<CR>
+
+nnoremap <F9> :40vsplit note:vim cheat<CR>
+
