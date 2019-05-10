@@ -72,7 +72,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "moves cursor down a split
-nnoremap <C-Down> <C-W><C-J> 
+nnoremap <C-Down> <C-W><C-J>
 "moves cursor up a split
 nnoremap <C-Up> <C-W><C-K>
 "moves cursor right a split
@@ -116,14 +116,25 @@ set backspace=indent,eol,start
 "enables loading of indent file for specific file types
 filetype plugin indent on
 
-"show existing tab with 4 spaces width
-set tabstop=4
-
 "when indenting with '>>', use 4 spaces width
 set shiftwidth=4
 
+" use 4 spaces for generic files
+set tabstop=4
+
 "on pressing tab, insert 4 spaces
 set expandtab
+
+" use 2 space width when sbt
+autocmd Filetype sbt setlocal tabstop=2
+" use 2 space width when sbt
+autocmd Filetype sbt setlocal shiftwidth=2
+
+" use 2 space width when scala
+autocmd Filetype scala setlocal tabstop=2
+" use 2 space width when scala
+autocmd Filetype scala setlocal shiftwidth=2
+
 
 "Folding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -212,6 +223,20 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'mileszs/ack.vim'
 
+    Plug 'francoiscabrol/ranger.vim'
+
+    Plug 'rbgrouleff/bclose.vim'
+
+    Plug 'derekwyatt/vim-scala'
+
+    Plug 'easymotion/vim-easymotion'
+
+    " Plug 'takac/vim-hardtime'
+
+    Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+
+    Plug 'christoomey/vim-tmux-navigator'
+
 call plug#end()
 
 " Nuake
@@ -246,3 +271,10 @@ nnoremap <F3> :SyntasticReset<CR>
 
 nnoremap <F9> :40vsplit note:vim cheat<CR>
 
+let g:notes_directories = ['~/bkolev-docs/src/BkolevNotes/misc']
+
+" Hardtime
+let g:hardtime_default_on = 1
+
+" Coc comment highlighting
+autocmd FileType json syntax match Comment +\/\/.\+$
