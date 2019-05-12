@@ -44,9 +44,6 @@ set listchars=tab:\│\ ,trail:-,extends:>,precedes:<,nbsp:+
 "open help with argument vertically positioned on the right
 command! -nargs=1 H :vert bo help <args>
 
-"open tig in new term vertical split
-command! T :vsplit term://tig
-
 " remove holding shift to enter command mode
 nmap ; :
 
@@ -160,6 +157,10 @@ hi Search guibg=LightBlue
 "FZF searching support
 set rtp+=/usr/local/opt/fzf
 nnoremap ,` :FZF<CR>
+
+" Bind T to open fzf tags search
+nnoremap ,1 :Tags<CR>
+
 
 "Environment
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -289,4 +290,6 @@ autocmd FileType json syntax match Comment +\/\/.\+$
 
 " Toggle tagbar
 nmap <F7> :TagbarToggle<CR>
+
+
 
