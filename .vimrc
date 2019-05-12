@@ -20,7 +20,7 @@ set paste
 set showmatch
 
 "set the background theme to dark
-set background=light
+set background=dark
 
 "enable all Python syntax highlighting features
 let python_highlight_all = 1
@@ -49,6 +49,9 @@ command! T :vsplit term://tig
 
 " remove holding shift to enter command mode
 nmap ; :
+
+" find tag file appropriate in path
+set tags=tags;/
 
 " disable swap files, I like to live life on the edge!
 set nobackup
@@ -237,6 +240,11 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'christoomey/vim-tmux-navigator'
 
+    Plug 'ctrlpvim/ctrlp.vim'
+
+    Plug 'majutsushi/tagbar'
+
+    Plug 'junegunn/fzf.vim'
 call plug#end()
 
 " Nuake
@@ -278,3 +286,7 @@ let g:hardtime_default_on = 1
 
 " Coc comment highlighting
 autocmd FileType json syntax match Comment +\/\/.\+$
+
+" Toggle tagbar
+nmap <F7> :TagbarToggle<CR>
+
